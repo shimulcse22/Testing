@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">Testing</string>
+    <string name="Do_You">Do you want to go Abroad</string>
+    <string name="apply">Apply</string>
+
+    <string-array name="Countries">
+
+        <item>US</item>
+        <item>UK</item>
+        <item>Switzerland</item>
+        <item>Spain</item>
+        <item>France</item>
+        <item>Germany</item>
+        <item>Finland</item>
+        <item>China</item>
+
+        <item>US</item>
+        <item>UK</item>
+        <item>Switzerland</item>
+        <item>Spain</item>
+        <item>France</item>
+        <item>Germany</item>
+        <item>Finland</item>
+        <item>China</item>
+
+
+    </string-array>
+
+    <string-array name="Jobs">
+
+        <item>Driver</item>
+        <item>Cleaner</item>
+        <item>Service holder</item>
+        <item>Software Engineer</item>
+        <item>Manager</item>
+        <item>Driver</item>
+        <item>Cleaner</item>
+        <item>Service holder</item>
+        <item>Software Engineer</item>
+        <item>Manager</item>
+
+        <item>Driver</item>
+        <item>Cleaner</item>
+        <item>Service holder</item>
+        <item>Software Engineer</item>
+        <item>Manager</item>
+
+        <item>Driver</item>
+        <item>Cleaner</item>
+        <item>Service holder</item>
+        <item>Software Engineer</item>
+        <item>Manager</item>
+
+
+    </string-array>
+    <string name="title_activity_infoamtion_nag">InfoamtionNag</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+
+</resources>

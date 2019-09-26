@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.InformationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/linearLayout"
+            android:layout_centerHorizontal="true"
+            android:padding="20dp"
+            android:layout_margin="5dp"
+            android:text="Please Enter Your Information"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:backgroundTint="@color/colorBackTINT"/>
+
+
+
+            <EditText
+                android:id="@+id/editTextFather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:hint="Father's Name"
+                android:inputType="textEmailAddress"
+                android:backgroundTint="@color/colorBackTINT"
+                />
+
+            <EditText
+                android:id="@+id/editTextMother"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:hint="Mother's Name"
+                android:inputType="text"
+                android:backgroundTint="@color/colorBackTINT"/>
+            <EditText
+                android:id="@+id/editTextBrith"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:hint="Date Of Brith"
+                android:inputType="date"
+                android:backgroundTint="@color/colorBackTINT"/>
+            <EditText
+                android:id="@+id/editTextAge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:hint="Age"
+                android:inputType="number"
+                android:backgroundTint="@color/colorBackTINT"/>
+            <EditText
+                android:id="@+id/editTextHeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:hint="Height"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/colorBackTINT"/>
+            <EditText
+                android:id="@+id/editTextWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:hint="Weight"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/colorBackTINT"/>
+            <EditText
+                android:id="@+id/editTextPresent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:hint="Present Address"
+                android:height="90dp"
+                android:gravity="bottom"
+                android:inputType="text|textMultiLine"
+                android:backgroundTint="@color/colorBackTINT"/>
+
+            <EditText
+                android:id="@+id/editTextPermanent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:hint="Permanent Address"
+                android:height="90dp"
+                android:gravity="bottom"
+                android:inputType="text|textMultiLine"
+                android:backgroundTint="@color/colorBackTINT"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/per_previous"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="15dp"
+                    android:background="@color/colorPrimary"
+                    android:text="Previous"
+                    android:textAllCaps="false"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@color/colorFormBackground" />
+                <Button
+                    android:id="@+id/per_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="15dp"
+                    android:background="@color/colorPrimary"
+                    android:text="Next"
+
+                    android:textAllCaps="false"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/colorFormBackground"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</ScrollView>
+

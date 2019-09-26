@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    android:orientation="vertical"
+    >
+
+
+    <Button
+        android:id="@+id/buttonPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimary"
+        android:text="Upload Your Passport Size Picture"
+        android:textAllCaps="false"
+        android:textColor="@color/colorFormBackground" />
+
+    <ImageView
+        android:id="@+id/imagePass"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_below="@+id/buttonPass"
+        android:layout_marginLeft="30dp"
+        />
+
+        <Button
+        android:id="@+id/buttonPic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:layout_margin="10dp"
+        android:text="Upload Your  Picture"
+        android:textAllCaps="false"
+        android:textColor="@color/colorFormBackground" />
+
+    <ImageView
+        android:id="@+id/imagePic"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_margin="30dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/up_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:background="@color/colorPrimary"
+            android:text="Previos"
+            android:textAllCaps="false"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/colorFormBackground" />
+        <Button
+            android:id="@+id/up_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:background="@color/colorPrimary"
+            android:text="Next"
+            android:textAllCaps="false"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/colorFormBackground"/>
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

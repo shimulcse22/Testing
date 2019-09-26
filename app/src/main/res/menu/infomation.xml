@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_country"
+        android:icon="@drawable/ic_flag_black_24dp"
+        android:title="Select Country" />
+
+    <item
+        android:id="@+id/nav_job"
+        android:icon="@drawable/ic_list_black_24dp"
+        android:title="Select Job" />
+    <item
+        android:id="@+id/nav_person"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="Personal Info" />
+
+    <item
+        android:id="@+id/nav_passport"
+        android:icon="@drawable/ic_filter_b_and_w_black_24dp"
+        android:title="Passport Info" />
+
+    <item
+        android:id="@+id/nav_upload"
+        android:icon="@drawable/ic_add_a_photo_black_24dp"
+        android:title="Upload Photo" />
+
+</menu>

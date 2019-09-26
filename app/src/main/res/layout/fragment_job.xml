@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:padding="20dp"
+    tools:context=".Activity.InformationActivity">
+    <LinearLayout
+        android:id="@+id/relative_checkbox2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:text="Please Select Service"
+            android:textColor="@color/colorPrimary"/>
+
+
+        <LinearLayout
+            android:id="@+id/checkbox_layout_job"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_below="@+id/text2">
+
+
+
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/relative2"
+            android:layout_below="@+id/chkbox_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom">
+
+            <Button android:id="@+id/job_previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Previous"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="10dp"
+                android:textAllCaps="false"
+                android:textColor="@color/colorFormBackground"
+                android:background="@color/colorPrimary"/>
+
+            <Button android:id="@+id/job_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:textAllCaps="false"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:textColor="@color/colorFormBackground"
+                android:background="@color/colorPrimary"
+                />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</ScrollView>

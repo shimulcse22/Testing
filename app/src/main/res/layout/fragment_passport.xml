@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.InformationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/linearLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:padding="25dp"
+            android:layout_margin="5dp"
+            android:text="Please Enter Your Passport Information"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"/>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <EditText
+                android:id="@+id/editTextPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Passport number"
+                android:inputType="number"
+                android:backgroundTint="@color/colorBackTINT"/>
+
+
+
+            <EditText
+                android:id="@+id/editTextIssueDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Issue Date"
+                android:inputType="date"
+                android:backgroundTint="@color/colorBackTINT"
+                />
+
+            <EditText
+                android:id="@+id/editTextIssuePlace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Issue Place"
+                android:inputType="text"
+                android:backgroundTint="@color/colorBackTINT"/>
+            <EditText
+                android:id="@+id/editTextExpired"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Date Of Expiry"
+                android:inputType="date"
+                android:backgroundTint="@color/colorBackTINT"/>
+            <EditText
+                android:id="@+id/editTextProfession"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Profession as Passport"
+                android:inputType="text"
+                android:backgroundTint="@color/colorBackTINT"/>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:layout_marginTop="140dp"
+            >
+            <Button
+                android:id="@+id/pass_previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:layout_margin="5dp"
+                android:text="Previous"
+                android:textAllCaps="false"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/colorFormBackground"
+                />
+            <Button
+                android:id="@+id/pass_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_centerInParent="false"
+                android:background="@color/colorPrimary"
+                android:layout_margin="5dp"
+                android:text="Next"
+                android:textAllCaps="false"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorFormBackground"/>
+
+            <Button
+                android:id="@+id/skip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:text="Skip"
+                android:textAllCaps="false"
+                android:layout_centerInParent="true"
+                android:textColor="@color/colorFormBackground"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+
