@@ -3,6 +3,7 @@ package com.example.testing.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,70 +17,60 @@ import com.example.testing.Model;
 import com.example.testing.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class InformationActivity extends AppCompatActivity implements PersonFragment.PersonInformation {
+public class InformationActivity extends AppCompatActivity implements ItemPageSelectListener {
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
-
         BottomNavigationView bottomNav = findViewById(R.id.navID);
-
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-        loadFragment(new CountryFragment());
-    }
-
-    public boolean loadFragment(Fragment fr){
-        if(fr !=null){
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, fr)
-                    .commit();
-            return true;
-        }
-        return false;
+        viewPager = findViewById(R.id.view_pager);
+        Adapter adapter = new Adapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(adapter.getCount());
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-                    Fragment selectedFragment = null;
-
-                    switch (menuItem.getItemId()){
+                    switch (menuItem.getItemId()) {
                         case R.id.nav_person:
-                            selectedFragment = new PersonFragment();
+                            viewPager.setCurrentItem(2, false);
                             break;
                         case R.id.nav_passport:
-                            selectedFragment = new PassportFragment();
+                            viewPager.setCurrentItem(3, false);
                             break;
                         case R.id.nav_upload:
-                            selectedFragment = new UploadFragment();
+                            viewPager.setCurrentItem(4, false);
                             break;
                         case R.id.nav_country:
-                            selectedFragment = new CountryFragment();
+                            viewPager.setCurrentItem(0, false);
                             break;
                         case R.id.nav_job:
-                            selectedFragment = new JobFragment();
+                            viewPager.setCurrentItem(1, false);
                             break;
-
                     }
-
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, selectedFragment)
-                            .addToBackStack(null)
-                            .commit();
                     return true;
                 }
             };
 
     @Override
-    public void getPerSonInformation(Model model) {
+    public void onSelectNextItem() {
+        int count = viewPager.getAdapter().getCount();
+        int nextItem = viewPager.getCurrentItem() + 1;
+        if (nextItem < count) {
+            viewPager.setCurrentItem(nextItem, false);
+        }
+    }
 
-        String name = model.getName();
-        String email = model.getEmail();
-        String mobile = model.getNumber();
+    @Override
+    public void onSelectPreviousItem() {
+        int nextItem = viewPager.getCurrentItem() - 1;
+        if (nextItem >= 0) {
+            viewPager.setCurrentItem(nextItem, false);
+        }
     }
 }

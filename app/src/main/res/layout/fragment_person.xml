@@ -73,14 +73,6 @@
                 android:inputType="date"
                 android:backgroundTint="@color/colorBackTINT"/>
             <EditText
-                android:id="@+id/editTextAge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="5dp"
-                android:hint="Age"
-                android:inputType="number"
-                android:backgroundTint="@color/colorBackTINT"/>
-            <EditText
                 android:id="@+id/editTextHeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

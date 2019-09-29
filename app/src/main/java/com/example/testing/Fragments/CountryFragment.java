@@ -1,7 +1,9 @@
 package com.example.testing.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.testing.Activity.ApplyActivity;
+import com.example.testing.Activity.ItemPageSelectListener;
+import com.example.testing.Model;
 import com.example.testing.R;
 
 import java.util.ArrayList;
@@ -23,10 +27,18 @@ import java.util.ArrayList;
 public class CountryFragment extends Fragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     ArrayList<String> checkedCountries = new ArrayList<String>();
-    ArrayList<String> getCheckedCountries;
+
     Button next_country,previous_country;
-    int mCurCheckPosition =0;
-    public static final String COUNTRY_TAG = "country";
+
+    Model model = Model.newInstance();
+
+    ItemPageSelectListener listener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listener = (ItemPageSelectListener) context;
+    }
 
     @Nullable
     @Override
@@ -62,44 +74,26 @@ public class CountryFragment extends Fragment implements View.OnClickListener, C
                 startActivity(new Intent(getActivity(), ApplyActivity.class));
                 break;
             case R.id.country_next :
-                cahngeFragmnents(new JobFragment());
+                model.setCountry(checkedCountries);
+                listener.onSelectNextItem();
                 break;
 
         }
-    }
-
-    public void cahngeFragmnents(Fragment fr) {
-        getFragmentManager()
-                .beginTransaction()
-                .hide(new PersonFragment())
-                .add(R.id.fragment_container, fr )
-                .addToBackStack(null)
-                .commit();
     }
 
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
         String checkedText = compoundButton.getText()+ "";
+
+
         if(b){
             checkedCountries.add(checkedText);
             Toast.makeText(getActivity(), compoundButton.getText(), Toast.LENGTH_SHORT).show();
         }
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("curChoice", mCurCheckPosition);
-    }
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        if (savedInstanceState != null) {
-            // Restore last state for checked position.
-            mCurCheckPosition = savedInstanceState.getInt("curChoice", 0);
-
+        else {
+            checkedCountries.remove(checkedText);
         }
-
     }
+
 }

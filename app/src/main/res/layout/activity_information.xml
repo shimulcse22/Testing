@@ -6,20 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".Activity.InformationActivity">
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/navID"
-        />
-
+        android:layout_above="@id/navID" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/infomation"/>
+        app:menu="@menu/infomation" />
 
 
 </RelativeLayout>

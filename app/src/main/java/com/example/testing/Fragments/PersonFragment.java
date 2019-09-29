@@ -1,10 +1,11 @@
 package com.example.testing.Fragments;
 
-import android.app.Activity;
 import android.content.Context;
 
 import android.os.Bundle;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,47 +16,40 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.testing.Activity.ItemPageSelectListener;
 import com.example.testing.Model;
 import com.example.testing.R;
 
-public class PersonFragment extends Fragment implements View.OnClickListener{
-    private static final String NAME_KEY = "name";
-    private static final String FATHER_KEY = "father";
-    private static final String MOTHER_KEY = "mother";
-    private static final String DATE_OF_BIRTH_KEY = "birth";
-    private static final String AGE_KEY = "age";
-    private static final String HEIGHT_KEY = "height";
-    private static final String WEIGHT_KEY = "weight";
-    private static final String PRESENT_KEY = "present";
-    private static final String PERMANENT_KEY = "permanent";
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
-    public static final String PERSON_TAG = "person";
+public class PersonFragment extends Fragment implements View.OnClickListener {
 
-    private EditText name,fatherName,motherName,age,dateOfBirth,height,weight,present,permanent;
+    private EditText name, fatherName, motherName, dateOfBirth, height, weight, present, permanent;
+    private Button previous_button, next_button;
 
-    private Button previous_button,next_button;
 
-    PersonInformation personInformation =null;
+    Model model = Model.newInstance();
 
-    Model model;
+    ItemPageSelectListener listener;
 
-    public PersonFragment() {
-        setArguments(new Bundle());
-    }
-    public interface PersonInformation{
-        public void getPerSonInformation(Model model);
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listener = (ItemPageSelectListener) context;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_person,container,false);
+        View v = inflater.inflate(R.layout.fragment_person, container, false);
 
         name = v.findViewById(R.id.editTextName);
         fatherName = v.findViewById(R.id.editTextFather);
         motherName = v.findViewById(R.id.editTextMother);
         dateOfBirth = v.findViewById(R.id.editTextBrith);
-        age = v.findViewById(R.id.editTextAge);
         height = v.findViewById(R.id.editTextHeight);
         weight = v.findViewById(R.id.editTextWeight);
         present = v.findViewById(R.id.editTextPresent);
@@ -64,88 +58,199 @@ public class PersonFragment extends Fragment implements View.OnClickListener{
         previous_button = v.findViewById(R.id.per_previous);
         next_button = v.findViewById(R.id.per_next);
 
-        name.getText().toString();
+        name.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        //Bundle mySavedInstanceState = getArguments();
+            }
 
-        //String persistentVariable = mySavedInstanceState.getString(NAME_KEY);
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-        //name.setText(persistentVariable);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                model.setName(name.getText().toString().trim());
+            }
+        });
+        fatherName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                model.setFathername(fatherName.getText().toString().trim());
+            }
+        });
+        motherName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                model.setMothername(motherName.getText().toString().trim());
+            }
+        });
+
+        dateOfBirth.addTextChangedListener(new TextWatcher() {
+            private String current = "";
+            private String ddmmyyyy = "DDMMYYYY";
+            private Calendar cal = Calendar.getInstance();
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int j, int i1, int i2) {
+                if (!s.toString().equals(current)) {
+                    String clean = s.toString().replaceAll("[^\\d.]|\\.", "");
+                    String cleanC = current.replaceAll("[^\\d.]|\\.", "");
+
+                    int cl = clean.length();
+                    int sel = cl;
+                    for (int i = 2; i <= cl && i < 6; i += 2) {
+                        sel++;
+                    }
+                    //Fix for pressing delete next to a forward slash
+                    if (clean.equals(cleanC)) sel--;
+
+                    if (clean.length() < 8) {
+                        clean = clean + ddmmyyyy.substring(clean.length());
+                    } else {
+                        //This part makes sure that when we finish entering numbers
+                        //the date is correct, fixing it otherwise
+                        int day = Integer.parseInt(clean.substring(0, 2));
+                        int mon = Integer.parseInt(clean.substring(2, 4));
+                        int year = Integer.parseInt(clean.substring(4, 8));
+
+                        mon = mon < 1 ? 1 : mon > 12 ? 12 : mon;
+                        cal.set(Calendar.MONTH, mon - 1);
+                        year = (year < 1900) ? 1900 : (year > 2100) ? 2100 : year;
+                        cal.set(Calendar.YEAR, year);
+                        // ^ first set year for the line below to work correctly
+                        //with leap years - otherwise, date e.g. 29/02/2012
+                        //would be automatically corrected to 28/02/2012
+
+                        day = (day > cal.getActualMaximum(Calendar.DATE)) ? cal.getActualMaximum(Calendar.DATE) : day;
+                        clean = String.format("%02d%02d%02d", day, mon, year);
+                    }
+
+                    clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                            clean.substring(2, 4),
+                            clean.substring(4, 8));
+
+                    sel = sel < 0 ? 0 : sel;
+                    current = clean;
+                    dateOfBirth.setText(current);
+                    dateOfBirth.setSelection(sel < current.length() ? sel : current.length());
+                    model.setDateofbirth(dateOfBirth.getText().toString());
+                }
+            }
 
 
+            @Override
+            public void afterTextChanged(Editable editable) {
+                model.setDateofbirth(dateOfBirth.getText().toString());
+            }
+        });
+
+        height.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                model.setHeight(height.getText().toString().trim());
+            }
+        });
+        weight.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                model.setWeight(weight.getText().toString().trim());
+            }
+        });
+        present.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                model.setPresentadreess(present.getText().toString().trim());
+            }
+        });
+        permanent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                model.setPermanentaddress(permanent.getText().toString().trim());
+            }
+        });
 
         next_button.setOnClickListener(this);
         previous_button.setOnClickListener(this);
         return v;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Activity activity = (Activity) context;
-        try {
-            personInformation =(PersonInformation) activity;
-        }catch (ClassCastException e){
-            throw new ClassCastException(activity.toString());
-        }
-    }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.per_next:
-                changeFragmnent();
+                listener.onSelectNextItem();
                 break;
             case R.id.per_previous:
-                changeBackFragmnent();
+                listener.onSelectPreviousItem();
                 break;
         }
-
-
     }
-    public void changeFragmnent(){
-
-        getFragmentManager()
-                .beginTransaction()
-                .hide(new PersonFragment())
-                .add(R.id.fragment_container, new PassportFragment())
-                .addToBackStack(null)
-                .commit();
-    }
-    public void changeBackFragmnent(){
-
-        getFragmentManager()
-                .beginTransaction()
-                .hide(new PersonFragment())
-                .replace(R.id.fragment_container, new JobFragment())
-                .addToBackStack(null)
-                .commit();
-    }
-
-    //@Override
-//    public void onPause() {
-//        super.onPause();
-//        String names = name.getText().toString();
-//        String fathername = fatherName.getText().toString();
-//        String mothername = motherName.getText().toString();
-//        String dateofbirth = dateOfBirth.getText().toString();
-//        String ages = age.getText().toString();
-//        String heights = height.getText().toString();
-//        String weghts = weight.getText().toString();
-//        String presentaddress = present.getText().toString();
-//        String permanentaddress = permanent.getText().toString();
-//
-//        getArguments().putString(NAME_KEY, names);
-//        getArguments().putString(FATHER_KEY, fathername);
-//        getArguments().putString(MOTHER_KEY, mothername);
-//        getArguments().putString(DATE_OF_BIRTH_KEY, dateofbirth);
-//        getArguments().putString(AGE_KEY, ages);
-//        getArguments().putString(HEIGHT_KEY, heights);
-//        getArguments().putString(WEIGHT_KEY, weghts);
-//        getArguments().putString(PRESENT_KEY, presentaddress);
-//        getArguments().putString(PERMANENT_KEY, permanentaddress);
-//
-//
-//
-//    }
 }
