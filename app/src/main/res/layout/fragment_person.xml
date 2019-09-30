@@ -20,7 +20,7 @@
             android:layout_centerHorizontal="true"
             android:padding="20dp"
             android:layout_margin="5dp"
-            android:text="Please Enter Your Information"
+            android:text="@string/personal"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
             android:textColor="@color/colorPrimary"
             android:textSize="25sp" />
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="5dp"
-                android:hint="Name"
+                android:hint="@string/name"
                 android:inputType="textPersonName"
                 android:backgroundTint="@color/colorBackTINT"/>
 
@@ -51,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="5dp"
-                android:hint="Father's Name"
+                android:hint="@string/father"
                 android:inputType="textEmailAddress"
                 android:backgroundTint="@color/colorBackTINT"
                 />
@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="5dp"
-                android:hint="Mother's Name"
+                android:hint="@string/mother"
                 android:inputType="text"
                 android:backgroundTint="@color/colorBackTINT"/>
             <EditText
@@ -69,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="5dp"
-                android:hint="Date Of Brith"
+                android:hint="@string/birth"
                 android:inputType="date"
                 android:backgroundTint="@color/colorBackTINT"/>
             <EditText
@@ -77,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="5dp"
-                android:hint="Height"
+                android:hint="@string/height"
                 android:inputType="numberDecimal"
                 android:backgroundTint="@color/colorBackTINT"/>
             <EditText
@@ -85,7 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="5dp"
-                android:hint="Weight"
+                android:hint="@string/weight"
                 android:inputType="numberDecimal"
                 android:backgroundTint="@color/colorBackTINT"/>
             <EditText
@@ -93,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="5dp"
-                android:hint="Present Address"
+                android:hint="@string/pre_add"
                 android:height="90dp"
                 android:gravity="bottom"
                 android:inputType="text|textMultiLine"
@@ -104,7 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="5dp"
-                android:hint="Permanent Address"
+                android:hint="@string/per_add"
                 android:height="90dp"
                 android:gravity="bottom"
                 android:inputType="text|textMultiLine"
@@ -121,7 +121,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="15dp"
                     android:background="@color/colorPrimary"
-                    android:text="Previous"
+                    android:text="@string/Previous_Button"
                     android:textAllCaps="false"
                     android:layout_alignParentLeft="true"
                     android:textColor="@color/colorFormBackground" />
@@ -133,7 +133,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="15dp"
                     android:background="@color/colorPrimary"
-                    android:text="Next"
+                    android:text="@string/Next_Button"
 
                     android:textAllCaps="false"
                     android:layout_alignParentRight="true"

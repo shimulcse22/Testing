@@ -19,10 +19,8 @@
             android:layout_height="match_parent"
             android:textSize="25sp"
             android:gravity="center"
-            android:text="Please Select Service"
+            android:text="@string/Select_job"
             android:textColor="@color/colorPrimary"/>
-
-
         <LinearLayout
             android:id="@+id/checkbox_layout_job"
             android:layout_width="wrap_content"
@@ -30,8 +28,6 @@
             android:orientation="vertical"
             android:padding="10dp"
             android:layout_below="@+id/text2">
-
-
 
         </LinearLayout>
         <RelativeLayout
@@ -44,7 +40,7 @@
             <Button android:id="@+id/job_previous"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Previous"
+                android:text="@string/Previous_Button"
                 android:layout_alignParentLeft="true"
                 android:layout_margin="10dp"
                 android:textAllCaps="false"
@@ -54,19 +50,13 @@
             <Button android:id="@+id/job_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Next"
+                android:text="@string/Next_Button"
                 android:textAllCaps="false"
                 android:layout_alignParentRight="true"
                 android:layout_margin="10dp"
                 android:textColor="@color/colorFormBackground"
                 android:background="@color/colorPrimary"
                 />
-
-
         </RelativeLayout>
-
-
     </LinearLayout>
-
-
 </ScrollView>

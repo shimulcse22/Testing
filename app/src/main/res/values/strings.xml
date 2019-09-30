@@ -2,6 +2,27 @@
     <string name="app_name">Testing</string>
     <string name="Do_You">Do you want to go Abroad</string>
     <string name="apply">Apply</string>
+    <string name="Select_Country">Please Select Your Country</string>
+    <string name="Select_job">Please Select Your Job</string>
+    <string name="Next_Button">Next</string>
+    <string name="Previous_Button">Previous</string>
+    <string name="Infromation">Please Enter Your Passport Information</string>
+    <string name="passportNo">Passport No</string>
+    <string name="issueDate">Issue Date</string>
+    <string name="issuePlace">Issue Place</string>
+    <string name="dateofExpire">Date of Expire</string>
+    <string name="profession">Profession as Passport</string>
+    <string name="personal">Please Enter Your Information</string>
+    <string name="name">Name</string>
+    <string name="father">Father Name</string>
+    <string name="mother">Mother Name</string>
+    <string name="birth">Date of Birth</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="per_add">Permanent Address</string>
+    <string name="pre_add">Present Address</string>
+
+
 
     <string-array name="Countries">
 
@@ -13,7 +34,6 @@
         <item>Germany</item>
         <item>Finland</item>
         <item>China</item>
-
         <item>US</item>
         <item>UK</item>
         <item>Switzerland</item>
@@ -22,12 +42,9 @@
         <item>Germany</item>
         <item>Finland</item>
         <item>China</item>
-
-
     </string-array>
 
     <string-array name="Jobs">
-
         <item>Driver</item>
         <item>Cleaner</item>
         <item>Service holder</item>
@@ -50,13 +67,7 @@
         <item>Service holder</item>
         <item>Software Engineer</item>
         <item>Manager</item>
-
-
     </string-array>
-    <string name="title_activity_infoamtion_nag">InfoamtionNag</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 
 
 </resources>

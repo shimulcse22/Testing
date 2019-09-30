@@ -53,7 +53,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="15dp"
             android:background="@color/colorPrimary"
-            android:text="Previos"
+            android:text="@string/Previous_Button"
             android:textAllCaps="false"
             android:layout_alignParentLeft="true"
             android:textColor="@color/colorFormBackground" />
@@ -65,7 +65,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="15dp"
             android:background="@color/colorPrimary"
-            android:text="Next"
+            android:text="@string/Next_Button"
             android:textAllCaps="false"
             android:layout_alignParentRight="true"
             android:textColor="@color/colorFormBackground"/>

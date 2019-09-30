@@ -15,9 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.HolderActivity"></activity>
+        <activity android:name=".Activity.ApplyActivity" />
+        <activity android:name=".Activity.HolderActivity" />
         <activity android:name=".Activity.InformationActivity" />
-        <activity android:name=".Activity.ApplyActivity">
+        <activity android:name=".Activity.LanguageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

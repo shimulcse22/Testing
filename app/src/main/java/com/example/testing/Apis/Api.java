@@ -10,6 +10,6 @@ import retrofit2.http.GET;
 public interface Api {
 
     @GET("bank")
-    Call<List<CountryModel>> getttingCountry();
+    Call<List<CountryModel>> getingCountry();
 
 }

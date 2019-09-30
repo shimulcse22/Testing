@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.testing.Activity.ApplyActivity;
 import com.example.testing.Activity.ItemPageSelectListener;
+import com.example.testing.CountryModel;
 import com.example.testing.Model;
 import com.example.testing.R;
 
@@ -33,6 +34,8 @@ public class CountryFragment extends Fragment implements View.OnClickListener, C
     Model model = Model.newInstance();
 
     ItemPageSelectListener listener;
+
+    CountryModel cm;
 
     @Override
     public void onAttach(Context context) {

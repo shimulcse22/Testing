@@ -22,7 +22,7 @@
             android:layout_marginBottom="10dp"
             android:padding="25dp"
             android:layout_margin="5dp"
-            android:text="Please Enter Your Passport Information"
+            android:text="@string/Infromation"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
             android:textColor="@color/colorPrimary"
             android:textSize="25sp"/>
@@ -41,7 +41,7 @@
                 android:id="@+id/editTextPass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Passport number"
+                android:hint="@string/passportNo"
                 android:inputType="number"
                 android:backgroundTint="@color/colorBackTINT"/>
 
@@ -51,7 +51,7 @@
                 android:id="@+id/editTextIssueDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Issue Date"
+                android:hint="@string/issueDate"
                 android:inputType="date"
                 android:backgroundTint="@color/colorBackTINT"
                 />
@@ -67,14 +67,14 @@
                 android:id="@+id/editTextExpired"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Date Of Expiry"
+                android:hint="@string/dateofExpire"
                 android:inputType="date"
                 android:backgroundTint="@color/colorBackTINT"/>
             <EditText
                 android:id="@+id/editTextProfession"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Profession as Passport"
+                android:hint="@string/profession"
                 android:inputType="text"
                 android:backgroundTint="@color/colorBackTINT"/>
 
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:layout_margin="5dp"
-                android:text="Previous"
+                android:text="@string/Previous_Button"
                 android:textAllCaps="false"
                 android:layout_alignParentLeft="true"
                 android:textColor="@color/colorFormBackground"
@@ -106,7 +106,7 @@
                 android:layout_centerInParent="false"
                 android:background="@color/colorPrimary"
                 android:layout_margin="5dp"
-                android:text="Next"
+                android:text="@string/Next_Button"
                 android:textAllCaps="false"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/colorFormBackground"/>
