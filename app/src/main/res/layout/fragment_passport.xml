@@ -60,7 +60,7 @@
                 android:id="@+id/editTextIssuePlace"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Issue Place"
+                android:hint="@string/issuePlace"
                 android:inputType="text"
                 android:backgroundTint="@color/colorBackTINT"/>
             <EditText

@@ -134,7 +134,6 @@
                     android:layout_marginBottom="15dp"
                     android:background="@color/colorPrimary"
                     android:text="@string/Next_Button"
-
                     android:textAllCaps="false"
                     android:layout_alignParentRight="true"
                     android:textColor="@color/colorFormBackground"/>

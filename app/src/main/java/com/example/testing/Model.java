@@ -29,11 +29,11 @@ public class Model implements Parcelable {
     private String weight;
     private String presentadreess;
     private String permanentaddress;
-    private String passportno;
-    private String issuedate;
-    private String issueplace;
-    private String dateexpire;
-    private String profession;
+    private String passportno=null;
+    private String issuedate=null;
+    private String issueplace=null;
+    private String dateexpire=null;
+    private String profession=null;
     private String im1;
     private String im2;
 

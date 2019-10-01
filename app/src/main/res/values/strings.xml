@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Testing</string>
-    <string name="Do_You">Do you want to go Abroad</string>
     <string name="apply">Apply</string>
     <string name="Select_Country">Please Select Your Country</string>
     <string name="Select_job">Please Select Your Job</string>
@@ -17,57 +16,24 @@
     <string name="father">Father Name</string>
     <string name="mother">Mother Name</string>
     <string name="birth">Date of Birth</string>
-    <string name="height">Height</string>
-    <string name="weight">Weight</string>
+    <string name="height">Height(Meter)</string>
+    <string name="weight">Weight (Kg)</string>
     <string name="per_add">Permanent Address</string>
     <string name="pre_add">Present Address</string>
+    <string name="error_name">Name is Required</string>
+    <string name="error_father">Father Name is Required</string>
+    <string name="error_mother">Mother Name is Required</string>
+    <string name="error_birth">Date of Birth is Required</string>
+    <string name="error_height">Height is Required</string>
+    <string name="error_weight">Weight is Required</string>
+    <string name="error_per_add">Permanent Address is Required</string>
+    <string name="error_pre_add">Present Address is Required</string>
+    <string name="error_box">Select Atleast One</string>
+    <string name="button_up_pass">Upload Your Passport Size Picture</string>
+    <string name="button_up_pic">Upload Your  Picture</string>
+    <string name="button_skip">Skip</string>
+    <string name="error_pic">Please Upload Both Image</string>
 
-
-
-    <string-array name="Countries">
-
-        <item>US</item>
-        <item>UK</item>
-        <item>Switzerland</item>
-        <item>Spain</item>
-        <item>France</item>
-        <item>Germany</item>
-        <item>Finland</item>
-        <item>China</item>
-        <item>US</item>
-        <item>UK</item>
-        <item>Switzerland</item>
-        <item>Spain</item>
-        <item>France</item>
-        <item>Germany</item>
-        <item>Finland</item>
-        <item>China</item>
-    </string-array>
-
-    <string-array name="Jobs">
-        <item>Driver</item>
-        <item>Cleaner</item>
-        <item>Service holder</item>
-        <item>Software Engineer</item>
-        <item>Manager</item>
-        <item>Driver</item>
-        <item>Cleaner</item>
-        <item>Service holder</item>
-        <item>Software Engineer</item>
-        <item>Manager</item>
-
-        <item>Driver</item>
-        <item>Cleaner</item>
-        <item>Service holder</item>
-        <item>Software Engineer</item>
-        <item>Manager</item>
-
-        <item>Driver</item>
-        <item>Cleaner</item>
-        <item>Service holder</item>
-        <item>Software Engineer</item>
-        <item>Manager</item>
-    </string-array>
 
 
 </resources>

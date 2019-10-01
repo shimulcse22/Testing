@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,13 +34,14 @@ public class UploadFragment extends Fragment implements View.OnClickListener {
     private static final int PICK_IMAGE_REQUEST_PASSPORT = 1;
     private static final int PICK_IMAGE_REQUEST_PIC = 2;
     public static final String UPLOAD_TAG = "upload";
-    private Uri filePath;
+    private Uri selectedImage1,selectedImage2;
     private Button passButton, picButton, previous_up, next_up;
     private ImageView imageViewPass, imageViewPic;
 
     Model model = Model.newInstance();
 
     ItemPageSelectListener listener;
+    String text;
 
     @Override
     public void onAttach(Context context) {
@@ -60,6 +62,8 @@ public class UploadFragment extends Fragment implements View.OnClickListener {
 
         imageViewPass = v.findViewById(R.id.imagePass);
         imageViewPic = v.findViewById(R.id.imagePic);
+
+        text = getResources().getString(R.string.error_pic);
 
 
 
@@ -85,10 +89,15 @@ public class UploadFragment extends Fragment implements View.OnClickListener {
                 listener.onSelectPreviousItem();
                 break;
             case R.id.up_next:
+                if(model.getIm1()!=null && model.getIm2() != null){
                 Intent intent = new Intent(getActivity(), HolderActivity.class);
                 intent.putExtra("model",model);
                 Log.d("DDDDDDDDDbefore", model.toString());
                 startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getActivity(),text,Toast.LENGTH_SHORT).show();
+                }
         }
     }
 
@@ -111,17 +120,18 @@ public class UploadFragment extends Fragment implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE_REQUEST_PASSPORT && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            filePath = data.getData();
-            Uri selectedImage = data.getData();
+            selectedImage1 = data.getData();
+            imageViewPass.setImageURI(selectedImage1);
+            model.setIm1(selectedImage1.toString());
 
-            imageViewPass.setImageURI(selectedImage);
-            model.setIm1(selectedImage.toString());
 
         } else if (requestCode == PICK_IMAGE_REQUEST_PIC && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            filePath = data.getData();
-            Uri selectedImage = data.getData();
-            imageViewPic.setImageURI(selectedImage);
-            model.setIm2(selectedImage.toString());
+            //filePath = data.getData();
+            selectedImage2 = data.getData();
+            imageViewPic.setImageURI(selectedImage2);
+            model.setIm2(selectedImage2.toString());
+
+
         }
     }
 }

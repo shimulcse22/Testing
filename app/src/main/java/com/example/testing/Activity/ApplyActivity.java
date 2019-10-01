@@ -27,7 +27,7 @@ public class ApplyActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.applyButton:
-                startActivity(new Intent(this, InformationActivity.class));
+
         }
     }
 }

@@ -1,22 +1,31 @@
 package com.example.testing;
 
 public class CountryModel {
-    private Long id;
-    private String bank;
+    private Long Code;
+    private String Name_En;
+    private String Name_Bn;
 
-    public Long getId() {
-        return id;
+    public Long getCode() {
+        return Code;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCode(Long code) {
+        Code = code;
     }
 
-    public String getBank() {
-        return bank;
+    public String getName_En() {
+        return Name_En;
     }
 
-    public void setBank(String bank) {
-        this.bank = bank;
+    public void setName_En(String name_En) {
+        Name_En = name_En;
+    }
+
+    public String getName_Bn() {
+        return Name_Bn;
+    }
+
+    public void setName_Bn(String name_Bn) {
+        Name_Bn = name_Bn;
     }
 }

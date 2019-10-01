@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.testing.Fragments.CountryFragment;
@@ -19,7 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class InformationActivity extends AppCompatActivity implements ItemPageSelectListener {
     ViewPager viewPager;
-
+    //LanguageActivity languageActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +65,7 @@ public class InformationActivity extends AppCompatActivity implements ItemPageSe
         int count = viewPager.getAdapter().getCount();
         int nextItem = viewPager.getCurrentItem() + 1;
         if (nextItem < count) {
-            viewPager.setCurrentItem(nextItem, false);
+            viewPager.setCurrentItem(nextItem, true);
         }
     }
 
@@ -70,7 +73,7 @@ public class InformationActivity extends AppCompatActivity implements ItemPageSe
     public void onSelectPreviousItem() {
         int nextItem = viewPager.getCurrentItem() - 1;
         if (nextItem >= 0) {
-            viewPager.setCurrentItem(nextItem, false);
+            viewPager.setCurrentItem(nextItem, true);
         }
     }
 }

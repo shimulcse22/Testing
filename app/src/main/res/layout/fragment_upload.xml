@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:background="@color/colorPrimary"
-        android:text="Upload Your Passport Size Picture"
+        android:text="@string/button_up_pass"
         android:textAllCaps="false"
         android:textColor="@color/colorFormBackground" />
 
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:layout_margin="10dp"
-        android:text="Upload Your  Picture"
+        android:text="@string/button_up_pic"
         android:textAllCaps="false"
         android:textColor="@color/colorFormBackground" />
 

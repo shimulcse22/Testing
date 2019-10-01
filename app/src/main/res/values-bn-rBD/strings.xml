@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Testing</string>
-    <string name="Do_You">আপনি কি বিদেশে যেতে চাচ্ছেন</string>
-    <string name="apply">Apply</string>
+    <string name="apply">আবেদন করুন</string>
     <string name="Select_Country">অনুগ্রহ করে আপনার পছন্দের দেশ নির্বাচিত করুন</string>
     <string name="Select_job">অনুগ্রহ করে আপনার পছন্দের কাজ নির্বাচিত করুন</string>
     <string name="Next_Button">পরবর্তী</string>
@@ -13,15 +12,28 @@
     <string name="issuePlace">প্রদানের স্থান</string>
     <string name="dateofExpire">মেয়াদের শেষ তারিখ </string>
     <string name="profession">পাসপোর্ট হিসাবে পেশা</string>
-
     <string name="personal">অনুগ্রহ করে আপনার তথ্য প্রদান করুন</string>
     <string name="name">নাম</string>
     <string name="father">পিতার নাম</string>
     <string name="mother">মাতার নাম</string>
     <string name="birth">জন্ম তারিখ</string>
-    <string name="height">উচ্চতা</string>
-    <string name="weight">ওজন </string>
+    <string name="height">উচ্চতা (মিটার)</string>
+    <string name="weight">ওজন (কেজি)</string>
     <string name="per_add">স্থায়ী ঠিকানা</string>
     <string name="pre_add">বর্তমান ঠিকানা</string>
+    <string name="error_name">অনুগ্রহ করে আপনার নাম প্রদান করুন</string>
+    <string name="error_father">অনুগ্রহ করে আপনার িতার নাম প্রদান করুন</string>
+    <string name="error_mother">অনুগ্রহ করে আপনার মাতার নাম প্রদান করুন</string>
+    <string name="error_birth">অনুগ্রহ করে আপনার জন্ম তারিখ প্রদান করুন</string>
+    <string name="error_height">অনুগ্রহ করে আপনার উচ্চতা প্রদান করুন</string>
+    <string name="error_weight">অনুগ্রহ করে আপনার ওজন প্রদান করুন</string>
+    <string name="error_per_add">অনুগ্রহ করে আপনার স্থায়ী ঠিকানা প্রদান করুন</string>
+    <string name="error_pre_add">অনুগ্রহ করে আপনার র্তমান ঠিকানা প্রদান করুন</string>
+    <string name="error_box">অন্তত একটি নির্বাচন করুন</string>
+    <string name="button_up_pass">আপনার পাসপোর্ট সাইজের ছবি আপলোড করুন </string>
+    <string name="button_up_pic">আপনার ছবি আপলোড করুন</string>
+    <string name="button_skip">এড়িয়ে যান</string>
+    <string name="error_pic">আপনার উভয় চিত্র আপলোড করুন</string>
+
 
 </resources>

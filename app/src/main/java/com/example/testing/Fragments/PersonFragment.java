@@ -19,11 +19,7 @@ import androidx.fragment.app.Fragment;
 import com.example.testing.Activity.ItemPageSelectListener;
 import com.example.testing.Model;
 import com.example.testing.R;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class PersonFragment extends Fragment implements View.OnClickListener {
 
@@ -128,14 +124,13 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                     for (int i = 2; i <= cl && i < 6; i += 2) {
                         sel++;
                     }
-                    //Fix for pressing delete next to a forward slash
+
                     if (clean.equals(cleanC)) sel--;
 
                     if (clean.length() < 8) {
                         clean = clean + ddmmyyyy.substring(clean.length());
                     } else {
-                        //This part makes sure that when we finish entering numbers
-                        //the date is correct, fixing it otherwise
+
                         int day = Integer.parseInt(clean.substring(0, 2));
                         int mon = Integer.parseInt(clean.substring(2, 4));
                         int year = Integer.parseInt(clean.substring(4, 8));
@@ -144,9 +139,6 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                         cal.set(Calendar.MONTH, mon - 1);
                         year = (year < 1900) ? 1900 : (year > 2100) ? 2100 : year;
                         cal.set(Calendar.YEAR, year);
-                        // ^ first set year for the line below to work correctly
-                        //with leap years - otherwise, date e.g. 29/02/2012
-                        //would be automatically corrected to 28/02/2012
 
                         day = (day > cal.getActualMaximum(Calendar.DATE)) ? cal.getActualMaximum(Calendar.DATE) : day;
                         clean = String.format("%02d%02d%02d", day, mon, year);
@@ -246,11 +238,67 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.per_next:
-                listener.onSelectNextItem();
+                checkPerson();
                 break;
             case R.id.per_previous:
                 listener.onSelectPreviousItem();
                 break;
         }
+    }
+
+    public void checkPerson(){
+        String names = name.getText().toString().trim();
+        String father = fatherName.getText().toString().trim();
+        String mother = motherName.getText().toString().trim();
+        String date = dateOfBirth.getText().toString().trim();
+        String heights = height.getText().toString().trim();
+        String weights = weight.getText().toString().trim();
+        String presents = present.getText().toString().trim();
+        String permanents = permanent.getText().toString().trim();
+
+        if (names.isEmpty()) {
+            name.setError(getResources().getString(R.string.error_name));
+            name.requestFocus();
+            return;
+        }
+        if (father.isEmpty()) {
+            fatherName.setError(getResources().getString(R.string.error_father));
+            fatherName.requestFocus();
+            return;
+        }
+        if (mother.isEmpty()) {
+            motherName.setError(getResources().getString(R.string.error_mother));
+            motherName.requestFocus();
+            return;
+        }
+        if (date.isEmpty()) {
+            dateOfBirth.setError(getResources().getString(R.string.error_birth));
+            dateOfBirth.requestFocus();
+
+        }
+        if (heights.isEmpty()) {
+            height.setError(getResources().getString(R.string.error_height));
+            height.requestFocus();
+            return;
+        }
+        if (weights.isEmpty()) {
+            weight.setError(getResources().getString(R.string.error_weight));
+            weight.requestFocus();
+            return;
+        }
+        if (presents.isEmpty()) {
+            present.setError(getResources().getString(R.string.error_pre_add));
+            present.requestFocus();
+            return;
+        }
+
+        if (permanents.isEmpty()) {
+            permanent.setError(getResources().getString(R.string.error_pre_add));
+            permanent.requestFocus();
+            return;
+        }
+
+        listener.onSelectNextItem();
+
     }
 }
