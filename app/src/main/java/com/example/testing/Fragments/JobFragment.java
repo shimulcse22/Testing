@@ -1,8 +1,7 @@
 package com.example.testing.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,24 +11,21 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
-import com.example.testing.Activity.ApplyActivity;
 import com.example.testing.Activity.ItemPageSelectListener;
 import com.example.testing.Apis.RetrofitClient;
-import com.example.testing.CountryModel;
-import com.example.testing.JobModel;
-import com.example.testing.Model;
+import com.example.testing.ModelClasses.JobModel;
+import com.example.testing.ModelClasses.Model;
 import com.example.testing.R;
 import com.example.testing.Shared;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -39,6 +35,7 @@ import retrofit2.Response;
 public class JobFragment extends Fragment implements View.OnClickListener {
 
     ArrayList<String> checkedJobs = new ArrayList<String>();
+    ArrayList<Long> checkCodes = new ArrayList<Long>();
     Button next_job, previous_job;
     LinearLayout relativeLayout;
     Shared shared;
@@ -47,6 +44,7 @@ public class JobFragment extends Fragment implements View.OnClickListener {
     Model model = Model.newInstance();
 
     ItemPageSelectListener listener;
+    JobModel jm;
 
     @Override
     public void onAttach(Context context) {
@@ -71,6 +69,7 @@ public class JobFragment extends Fragment implements View.OnClickListener {
         Call<List<JobModel>> call = RetrofitClient.getInstance().getApi().gettingJob();
 
         call.enqueue(new Callback<List<JobModel>>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(Call<List<JobModel>> call, Response<List<JobModel>> response) {
 
@@ -78,21 +77,28 @@ public class JobFragment extends Fragment implements View.OnClickListener {
                     CheckBox cb = new CheckBox(getActivity());
                     if(s == "bn") {
                         cb.setText((CharSequence) jm.getName_Bn());
+                        cb.setId(Math.toIntExact(jm.getJobID()));
+
                     }
                     else{
                         cb.setText((CharSequence) jm.getName_En());
+                        cb.setId(Math.toIntExact(jm.getJobID()));
                     };
+
                     relativeLayout.addView(cb);
                     cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                             String checkedText = compoundButton.getText()+ "";
+                            Long checkedId = Long.valueOf(compoundButton.getId());
                             if(b){
                                 checkedJobs.add(checkedText);
+                                checkCodes.add(checkedId);
                                 Toast.makeText(getActivity(), compoundButton.getText(), Toast.LENGTH_SHORT).show();
                             }
                             else {
                                 checkedJobs.remove(checkedText);
+                                checkCodes.remove(checkedId);
                             }
                         }
                     });
@@ -102,6 +108,7 @@ public class JobFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onFailure(Call<List<JobModel>> call, Throwable t) {
                 Log.d("Fail",t.getMessage());
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
         return v;
@@ -125,7 +132,8 @@ public class JobFragment extends Fragment implements View.OnClickListener {
             Toast.makeText(getActivity(),"At Least Select One Service", Toast.LENGTH_SHORT).show();
         }
         else {
-            model.setJob(checkedJobs);
+            model.setJobsList(checkedJobs);
+            model.setApplideJobsList(checkCodes);
             listener.onSelectNextItem();
         }
     }

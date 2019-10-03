@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".Activity.InformationActivity">
 
-    <androidx.viewpager.widget.ViewPager
+    <com.example.testing.Activity.NonSwipeableViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/navID" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navID"

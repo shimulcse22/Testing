@@ -1,4 +1,4 @@
-package com.example.testing;
+package com.example.testing.ModelClasses;
 
 import java.util.Locale;
 

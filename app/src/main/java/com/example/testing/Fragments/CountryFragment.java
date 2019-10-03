@@ -1,10 +1,7 @@
 package com.example.testing.Fragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,19 +17,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.testing.Activity.ApplyActivity;
-import com.example.testing.Activity.InformationActivity;
 import com.example.testing.Activity.ItemPageSelectListener;
 import com.example.testing.Activity.LanguageActivity;
 import com.example.testing.Apis.RetrofitClient;
-import com.example.testing.CountryModel;
-import com.example.testing.Model;
+import com.example.testing.ModelClasses.CountryModel;
+import com.example.testing.ModelClasses.Model;
 import com.example.testing.R;
 import com.example.testing.Shared;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -102,8 +96,6 @@ public class CountryFragment extends Fragment implements View.OnClickListener {
                         @Override
                         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                             String checkedText = compoundButton.getText()+ "";
-
-
                             if(b){
                                 checkedCountries.add(checkedText);
                                 Toast.makeText(getActivity(), compoundButton.getText(), Toast.LENGTH_SHORT).show();
@@ -119,6 +111,7 @@ public class CountryFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onFailure(Call<List<CountryModel>> call, Throwable t) {
                     Log.d("Fail",t.getMessage());
+                    Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -143,7 +136,7 @@ public class CountryFragment extends Fragment implements View.OnClickListener {
             Toast.makeText(getActivity(),text, Toast.LENGTH_SHORT).show();
         }
         else {
-            model.setCountry(checkedCountries);
+            model.setExpectedCountryList(checkedCountries);
             listener.onSelectNextItem();
         }
     }

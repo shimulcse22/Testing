@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.testing.Activity.ItemPageSelectListener;
-import com.example.testing.Model;
+import com.example.testing.ModelClasses.Model;
 import com.example.testing.R;
 
 import java.util.Calendar;
@@ -228,7 +228,7 @@ public class PassportFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                model.setProfession(passProfession.getText().toString().trim());
+                model.setProfessionAsPassport(passProfession.getText().toString().trim());
             }
         });
         return v;

@@ -1,12 +1,9 @@
 package com.example.testing.Fragments;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,11 +18,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.testing.Activity.HolderActivity;
 import com.example.testing.Activity.ItemPageSelectListener;
-import com.example.testing.Model;
+import com.example.testing.ModelClasses.Model;
 import com.example.testing.R;
-import com.google.android.material.tabs.TabLayout;
-
-import java.io.IOException;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -33,7 +27,6 @@ public class UploadFragment extends Fragment implements View.OnClickListener {
 
     private static final int PICK_IMAGE_REQUEST_PASSPORT = 1;
     private static final int PICK_IMAGE_REQUEST_PIC = 2;
-    public static final String UPLOAD_TAG = "upload";
     private Uri selectedImage1,selectedImage2;
     private Button passButton, picButton, previous_up, next_up;
     private ImageView imageViewPass, imageViewPic;
@@ -89,7 +82,7 @@ public class UploadFragment extends Fragment implements View.OnClickListener {
                 listener.onSelectPreviousItem();
                 break;
             case R.id.up_next:
-                if(model.getIm1()!=null && model.getIm2() != null){
+                if(model.getPassportSizePhoto()!=null && model.getFullSizePhoto() != null){
                 Intent intent = new Intent(getActivity(), HolderActivity.class);
                 intent.putExtra("model",model);
                 Log.d("DDDDDDDDDbefore", model.toString());
@@ -122,14 +115,14 @@ public class UploadFragment extends Fragment implements View.OnClickListener {
         if (requestCode == PICK_IMAGE_REQUEST_PASSPORT && resultCode == RESULT_OK && data != null && data.getData() != null) {
             selectedImage1 = data.getData();
             imageViewPass.setImageURI(selectedImage1);
-            model.setIm1(selectedImage1.toString());
+            model.setPassportSizePhoto(selectedImage1.toString());
 
 
         } else if (requestCode == PICK_IMAGE_REQUEST_PIC && resultCode == RESULT_OK && data != null && data.getData() != null) {
             //filePath = data.getData();
             selectedImage2 = data.getData();
             imageViewPic.setImageURI(selectedImage2);
-            model.setIm2(selectedImage2.toString());
+            model.setFullSizePhoto(selectedImage2.toString());
 
 
         }

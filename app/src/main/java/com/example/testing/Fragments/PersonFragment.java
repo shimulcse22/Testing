@@ -17,7 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.testing.Activity.ItemPageSelectListener;
-import com.example.testing.Model;
+import com.example.testing.ModelClasses.Model;
 import com.example.testing.R;
 import java.util.Calendar;
 
@@ -67,7 +67,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void afterTextChanged(Editable s) {
-                model.setName(name.getText().toString().trim());
+                model.setFirstName(name.getText().toString().trim());
             }
         });
         fatherName.addTextChangedListener(new TextWatcher() {
@@ -83,7 +83,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                model.setFathername(fatherName.getText().toString().trim());
+                model.setFatherName(fatherName.getText().toString().trim());
             }
         });
         motherName.addTextChangedListener(new TextWatcher() {
@@ -99,7 +99,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                model.setMothername(motherName.getText().toString().trim());
+                model.setMotherName(motherName.getText().toString().trim());
             }
         });
 
@@ -152,14 +152,14 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                     current = clean;
                     dateOfBirth.setText(current);
                     dateOfBirth.setSelection(sel < current.length() ? sel : current.length());
-                    model.setDateofbirth(dateOfBirth.getText().toString());
+                    model.setDateOfBirth(dateOfBirth.getText().toString());
                 }
             }
 
 
             @Override
             public void afterTextChanged(Editable editable) {
-                model.setDateofbirth(dateOfBirth.getText().toString());
+                model.setDateOfBirth(dateOfBirth.getText().toString());
             }
         });
 
@@ -208,7 +208,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                model.setPresentadreess(present.getText().toString().trim());
+                model.setPresentAddress(present.getText().toString().trim());
             }
         });
         permanent.addTextChangedListener(new TextWatcher() {
@@ -224,7 +224,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                model.setPermanentaddress(permanent.getText().toString().trim());
+                model.setPermanentAddress(permanent.getText().toString().trim());
             }
         });
 
@@ -274,7 +274,6 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         if (date.isEmpty()) {
             dateOfBirth.setError(getResources().getString(R.string.error_birth));
             dateOfBirth.requestFocus();
-
         }
         if (heights.isEmpty()) {
             height.setError(getResources().getString(R.string.error_height));

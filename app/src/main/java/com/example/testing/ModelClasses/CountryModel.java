@@ -1,4 +1,4 @@
-package com.example.testing;
+package com.example.testing.ModelClasses;
 
 public class CountryModel {
     private Long Code;
