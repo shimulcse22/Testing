@@ -4,61 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.LanguageActivity"
-    android:background="@color/colorPrimary">
+    tools:context=".Activity.LanguageActivity">
     <TextView
+        android:id="@+id/txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="225dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="25sp"
+        android:text="Do you want to go Abroad"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+        android:textColor="@color/colorPrimary" />
+    <Button
+        android:layout_below="@+id/txt1"
+        android:id="@+id/english"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textColor="@color/colorFormBackground"
+        android:background="@color/colorPrimary"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:textAllCaps="false"
+        android:text="For English Click"/>
+    <TextView
+        android:id="@+id/txt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center"
         android:padding="10dp"
-        android:layout_above="@+id/english"
-        android:text="Do you want to go Abroad"
-        android:textSize="30sp"
-        android:textColor="@color/colorFormBackground"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
-    <Button
-        android:id="@+id/english"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:textColor="@color/colorFormBackground"
-        android:background="@color/colorPrimaryDark"
-        android:padding="5dp"
-        android:textSize="20sp"
-        android:textAllCaps="false"
-        android:text="For English Click" />
-
-
-    <TextView
-        android:id="@+id/txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:gravity="center"
         android:layout_below="@+id/english"
         android:text="আপনি কি বিদেশে যেতে চাচ্ছেন"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/colorFormBackground"
-        android:textSize="30sp" />
+        android:textColor="@color/colorPrimary"
+        android:textSize="25sp"/>
 
     <Button
+        android:layout_below="@+id/txt2"
         android:id="@+id/bangla"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
-        android:layout_below="@+id/txt"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textColor="@color/colorFormBackground"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
+        android:text="  বাংলার  জন্যে  চাপুন "/>
 
-        android:text="  বাংলার  জন্যে  চাপুন " />
 </RelativeLayout>
