@@ -40,12 +40,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="5dp"
-                android:hint="@string/name"
+                android:hint="@string/firstname"
                 android:inputType="textPersonName"
                 android:backgroundTint="@color/colorBackTINT"/>
 
-
-
+            <EditText
+                android:id="@+id/editTextLast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:hint="@string/lastName"
+                android:inputType="textEmailAddress"
+                android:backgroundTint="@color/colorBackTINT"
+                />
             <EditText
                 android:id="@+id/editTextFather"
                 android:layout_width="match_parent"
@@ -56,6 +63,7 @@
                 android:backgroundTint="@color/colorBackTINT"
                 />
 
+
             <EditText
                 android:id="@+id/editTextMother"
                 android:layout_width="match_parent"
@@ -64,6 +72,15 @@
                 android:hint="@string/mother"
                 android:inputType="text"
                 android:backgroundTint="@color/colorBackTINT"/>
+            <EditText
+                android:id="@+id/editTextNatinalId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:hint="@string/nationalID"
+                android:inputType="textEmailAddress"
+                android:backgroundTint="@color/colorBackTINT"
+                />
             <EditText
                 android:id="@+id/editTextBrith"
                 android:layout_width="match_parent"
@@ -139,9 +156,6 @@
                     android:textColor="@color/colorFormBackground"/>
             </RelativeLayout>
         </LinearLayout>
-
-
-
     </LinearLayout>
 
 </ScrollView>

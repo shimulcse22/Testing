@@ -13,7 +13,7 @@
     <string name="dateofExpire">মেয়াদের শেষ তারিখ </string>
     <string name="profession">পাসপোর্ট হিসাবে পেশা</string>
     <string name="personal">অনুগ্রহ করে আপনার তথ্য প্রদান করুন</string>
-    <string name="name">নাম</string>
+    <string name="firstname">নামের প্রথম অংশ</string>
     <string name="father">পিতার নাম</string>
     <string name="mother">মাতার নাম</string>
     <string name="birth">জন্ম তারিখ</string>
@@ -34,6 +34,11 @@
     <string name="button_up_pic">আপনার ছবি আপলোড করুন</string>
     <string name="button_skip">এড়িয়ে যান</string>
     <string name="error_pic">আপনার উভয় চিত্র আপলোড করুন</string>
-
+    <string name="check">আপনার সমস্ত তথ্য পরীক্ষা করুন</string>
+    <string name="country">দেশ</string>
+    <string name="job">কাজ</string>
+    <string name="lastName">নামের শেষাংশ</string>
+    <string name="nationalID">জাতীয় পরিচয়পত্র</string>
+    <string name="name">নাম</string>
 
 </resources>

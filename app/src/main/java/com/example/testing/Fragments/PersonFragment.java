@@ -23,7 +23,7 @@ import java.util.Calendar;
 
 public class PersonFragment extends Fragment implements View.OnClickListener {
 
-    private EditText name, fatherName, motherName, dateOfBirth, height, weight, present, permanent;
+    private EditText name, fatherName, motherName, dateOfBirth, height, weight, present, permanent,lastname,nationalId;
     private Button previous_button, next_button;
 
 
@@ -43,8 +43,10 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_person, container, false);
 
         name = v.findViewById(R.id.editTextName);
+        lastname = v.findViewById(R.id.editTextLast);
         fatherName = v.findViewById(R.id.editTextFather);
         motherName = v.findViewById(R.id.editTextMother);
+        nationalId = v.findViewById(R.id.editTextNatinalId);
         dateOfBirth = v.findViewById(R.id.editTextBrith);
         height = v.findViewById(R.id.editTextHeight);
         weight = v.findViewById(R.id.editTextWeight);
@@ -68,6 +70,23 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
             @Override
             public void afterTextChanged(Editable s) {
                 model.setFirstName(name.getText().toString().trim());
+            }
+        });
+
+        lastname.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                model.setLastName(lastname.getText().toString().trim());
             }
         });
         fatherName.addTextChangedListener(new TextWatcher() {
@@ -102,7 +121,22 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                 model.setMotherName(motherName.getText().toString().trim());
             }
         });
+        nationalId.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                model.setNationalIdNo(nationalId.getText().toString().trim());
+            }
+        });
         dateOfBirth.addTextChangedListener(new TextWatcher() {
             private String current = "";
             private String ddmmyyyy = "DDMMYYYY";

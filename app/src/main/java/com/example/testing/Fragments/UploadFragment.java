@@ -2,8 +2,11 @@ package com.example.testing.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +24,9 @@ import com.example.testing.Activity.ItemPageSelectListener;
 import com.example.testing.ModelClasses.Model;
 import com.example.testing.R;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
 import static android.app.Activity.RESULT_OK;
 
 public class UploadFragment extends Fragment implements View.OnClickListener {
@@ -30,6 +36,9 @@ public class UploadFragment extends Fragment implements View.OnClickListener {
     private Uri selectedImage1,selectedImage2;
     private Button passButton, picButton, previous_up, next_up;
     private ImageView imageViewPass, imageViewPic;
+
+    Bitmap bitmap,bitmap2;
+
 
     Model model = Model.newInstance();
 
@@ -122,6 +131,7 @@ public class UploadFragment extends Fragment implements View.OnClickListener {
             //filePath = data.getData();
             selectedImage2 = data.getData();
             imageViewPic.setImageURI(selectedImage2);
+
             model.setFullSizePhoto(selectedImage2.toString());
 
 

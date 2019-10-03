@@ -2,15 +2,21 @@ package com.example.testing.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.testing.Apis.RetrofitClient;
@@ -18,6 +24,10 @@ import com.example.testing.ModelClasses.Model;
 import com.example.testing.ModelClasses.PassportModel;
 import com.example.testing.ModelClasses.SubmitModel;
 import com.example.testing.R;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.URI;
 import java.util.Date;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,45 +36,53 @@ import retrofit2.Response;
 
 public class HolderActivity extends AppCompatActivity {
 
-    TextView name,fathername,mothername,height,weight,presentadd,permanentadd;
+    TextView name,fathername,mothername,height,weight,presentadd,permanentadd,country,job,date;
     ImageView imageView;
     Model model;
     Button button;
-    Uri myUri;
+    Uri imagePass,imageFull;
+    Bitmap bitmap,bitmap2;
     Date DateOfBirth=null;
+    String encodedStringFullSize,encodedStringPassport;
 
+
+
+    @SuppressLint("WrongThread")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_holder);
         model = getIntent().getParcelableExtra("model");
+        country =findViewById(R.id.addCountry);
+        job =findViewById(R.id.addJob);
+        name = findViewById(R.id.addFistname);
+        fathername = findViewById(R.id.addFatherName);
+        mothername = findViewById(R.id.addMotherName);
+        date = findViewById(R.id.dateBirth);
+        height = findViewById(R.id.txtHeight);
+        weight = findViewById(R.id.txtWeight);
+        presentadd = findViewById(R.id.txtPerAdd);
+        permanentadd = findViewById(R.id.txtPreAdd);
 
-        LinearLayout layout1 = findViewById(R.id.linearCountry);
-        LinearLayout layout2 = findViewById(R.id.linearJob);
-
+        button = findViewById(R.id.submit);
         for(int i = 0;i<model.getExpectedCountryList().size();i++){
-            TextView tx = new TextView(this);
-            tx.setText("You Select This : "+model.getExpectedCountryList().get(i));
-            layout1.addView(tx);
+            country.setText(" : "+model.getExpectedCountryList());
 
         }
 
         for(int j = 0;j<model.getJobsList().size();j++){
-            TextView txj = new TextView(this);
-            txj.setText("You Select this : "+model.getApplideJobsList().get(j));
-            layout2.addView(txj);
-
+            job.setText(" : "+model.getJobsList().get(j));
         }
-        name = findViewById(R.id.txtname);
-        fathername = findViewById(R.id.txtfathername);
-        mothername = findViewById(R.id.txtmothername);
-        height = findViewById(R.id.txtheight);
-        weight = findViewById(R.id.txtweihght);
-        presentadd = findViewById(R.id.txtpresent);
-        permanentadd = findViewById(R.id.txtpermanentadd);
-        permanentadd = findViewById(R.id.txtpermanentadd);
-        permanentadd = findViewById(R.id.txtpermanentadd);
-        button = findViewById(R.id.btnSubmit);
+
+        name.setText(" : "+model.getFirstName()+" "+model.getLastName());
+        fathername.setText(" : "+model.getFatherName());
+        mothername.setText(" : "+model.getMotherName());
+        date.setText(" : "+model.getDateOfBirth());
+        height.setText(" : "+model.getHeight());
+        weight.setText(" : "+model.getWeight());
+        presentadd.setText(" : "+model.getPresentAddress());
+        permanentadd.setText(" : "+model.getPermanentAddress());
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,16 +90,43 @@ public class HolderActivity extends AppCompatActivity {
             }
         });
         //imageView = findViewById(R.id.image11);
-        name.setText(getResources().getString(R.string.name)+" : "+model.getFirstName());
-        fathername.setText(model.getFatherName());
-        mothername.setText(model.getMotherName());
-        height.setText(model.getHeight());
-        weight.setText(model.getWeight());
-        presentadd.setText(model.getPresentAddress());
-        permanentadd.setText(model.getPermanentAddress());
 
-        myUri = Uri.parse(model.getPassportSizePhoto());
-        Log.d("DDDDDDDDDafter", model.toString());
+//        imagePass = Uri.parse(model.getPassportSizePhoto());
+//
+//            try {
+//                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),imagePass);
+//                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+//                byte[] byteArray = outputStream.toByteArray();
+//
+//                //Use your Base64 String as you wish
+//                encodedStringPassport = Base64.encodeToString(byteArray, Base64.DEFAULT);
+//            }
+//            catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//
+//
+//        imageFull = Uri.parse(model.getFullSizePhoto());
+//
+//            try {
+//                bitmap2 = MediaStore.Images.Media.getBitmap(getContentResolver(),imageFull);
+//                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//                bitmap2.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+//                byte[] byteArray = outputStream.toByteArray();
+//
+//                //Use your Base64 String as you wish
+//                encodedStringFullSize = Base64.encodeToString(byteArray, Base64.DEFAULT);
+//            }
+//            catch (IOException e) {
+//                e.printStackTrace();
+//            }
+
+
+
+
+        Log.d("", model.toString());
     }
 
 
@@ -96,19 +141,15 @@ public class HolderActivity extends AppCompatActivity {
         pm.setIssuePlace("Dhaka");
 
         sm.setFirstName(model.getFirstName());
-        sm.setLastName("shimul");
+        sm.setLastName(model.getLastName());
         sm.setFatherName(model.getFatherName());
         sm.setMotherName(model.getMotherName());
-        //       SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-//        try {
-//            DateOfBirth = format.parse(model.getDateOfBirth());
-//            System.out.println(DateOfBirth);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-        sm.setNationalIdNumber("10101");
+        sm.setNationalIdNumber(model.getNationalIdNo());
+        sm.setDateOfBirth(model.getDateOfBirth());
         sm.setPresentAddress(model.getPresentAddress());
         sm.setPermanentAddress(model.getPermanentAddress());
+        sm.setOrganizationId((long) 1);
+
         Double h = Double.parseDouble(model.getHeight());
         sm.setHeight(h);
         Double w = Double.parseDouble(model.getWeight());
@@ -119,10 +160,12 @@ public class HolderActivity extends AppCompatActivity {
         for(int i= 0;i<model.getExpectedCountryList().size();i++){
             sm.setExpectedCountryList(model.getExpectedCountryList());
         }
-
+        for(int j = 0;j<model.getJobsList().size();j++){
+            sm.setExpectedJobList(model.getApplideJobsList());
+        }
 
         Log.d("FULL", sm.toString());
-        System.out.println(sm);
+        //System.out.println(sm);
         Call<SubmitModel> call = RetrofitClient.getInstance().getApi().userRegistration(sm);
 
         call.enqueue(new Callback<SubmitModel>() {
@@ -145,6 +188,7 @@ public class HolderActivity extends AppCompatActivity {
             }
         });
     }
+
 
 
 }

@@ -26,10 +26,12 @@ public class Model implements Parcelable {
     private ArrayList<String> ExpectedCountryList;
     private ArrayList<String> JobsList;
     private ArrayList<Long> ApplideJobsList;
-    private String FirstName ;
+    private String FirstName;
+    private String lastName;
     private String FatherName;
     private String MotherName;
     private String DateOfBirth;
+    private String nationalIdNo;
     private String Height;
     private String weight;
     private String PresentAddress;
@@ -78,6 +80,14 @@ public class Model implements Parcelable {
         FirstName = firstName;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public String getFatherName() {
         return FatherName;
     }
@@ -100,6 +110,14 @@ public class Model implements Parcelable {
 
     public void setDateOfBirth(String dateOfBirth) {
         DateOfBirth = dateOfBirth;
+    }
+
+    public String getNationalIdNo() {
+        return nationalIdNo;
+    }
+
+    public void setNationalIdNo(String nationalIdNo) {
+        this.nationalIdNo = nationalIdNo;
     }
 
     public String getHeight() {
@@ -190,6 +208,31 @@ public class Model implements Parcelable {
         FullSizePhoto = fullSizePhoto;
     }
 
+    @Override
+    public String toString() {
+        return "Model{" +
+                "ExpectedCountryList=" + ExpectedCountryList +
+                ", JobsList=" + JobsList +
+                ", ApplideJobsList=" + ApplideJobsList +
+                ", FirstName='" + FirstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", FatherName='" + FatherName + '\'' +
+                ", MotherName='" + MotherName + '\'' +
+                ", DateOfBirth='" + DateOfBirth + '\'' +
+                ", nationalIdNo='" + nationalIdNo + '\'' +
+                ", Height='" + Height + '\'' +
+                ", weight='" + weight + '\'' +
+                ", PresentAddress='" + PresentAddress + '\'' +
+                ", PermanentAddress='" + PermanentAddress + '\'' +
+                ", passportno='" + passportno + '\'' +
+                ", issuedate='" + issuedate + '\'' +
+                ", issueplace='" + issueplace + '\'' +
+                ", dateexpire='" + dateexpire + '\'' +
+                ", ProfessionAsPassport='" + ProfessionAsPassport + '\'' +
+                ", PassportSizePhoto='" + PassportSizePhoto + '\'' +
+                ", FullSizePhoto='" + FullSizePhoto + '\'' +
+                '}';
+    }
 
     @Override
     public int describeContents() {
@@ -202,9 +245,11 @@ public class Model implements Parcelable {
         dest.writeStringList(this.JobsList);
         dest.writeList(this.ApplideJobsList);
         dest.writeString(this.FirstName);
+        dest.writeString(this.lastName);
         dest.writeString(this.FatherName);
         dest.writeString(this.MotherName);
         dest.writeString(this.DateOfBirth);
+        dest.writeString(this.nationalIdNo);
         dest.writeString(this.Height);
         dest.writeString(this.weight);
         dest.writeString(this.PresentAddress);
@@ -218,7 +263,7 @@ public class Model implements Parcelable {
         dest.writeString(this.FullSizePhoto);
     }
 
-    private Model() {
+    public Model() {
     }
 
     protected Model(Parcel in) {
@@ -227,9 +272,11 @@ public class Model implements Parcelable {
         this.ApplideJobsList = new ArrayList<Long>();
         in.readList(this.ApplideJobsList, Long.class.getClassLoader());
         this.FirstName = in.readString();
+        this.lastName = in.readString();
         this.FatherName = in.readString();
         this.MotherName = in.readString();
         this.DateOfBirth = in.readString();
+        this.nationalIdNo = in.readString();
         this.Height = in.readString();
         this.weight = in.readString();
         this.PresentAddress = in.readString();

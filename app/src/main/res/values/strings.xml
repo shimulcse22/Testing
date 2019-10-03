@@ -12,7 +12,7 @@
     <string name="dateofExpire">Date of Expire</string>
     <string name="profession">Profession as Passport</string>
     <string name="personal">Please Enter Your Information</string>
-    <string name="name">Name</string>
+    <string name="firstname">First Name</string>
     <string name="father">Father Name</string>
     <string name="mother">Mother Name</string>
     <string name="birth">Date of Birth</string>
@@ -33,6 +33,14 @@
     <string name="button_up_pic">Upload Your  Picture</string>
     <string name="button_skip">Skip</string>
     <string name="error_pic">Please Upload Both Image</string>
+    <string name="check">Please Check All Of Your Information</string>
+    <string name="country">Country</string>
+    <string name="job">Job</string>
+
+    <string name="lastName">Last Name</string>
+    <string name="nationalID">National ID</string>
+    <string name="name">Name</string>
+
 
 
 
