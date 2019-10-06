@@ -2,54 +2,66 @@ package com.example.testing.ModelClasses;
 
 import android.content.Intent;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class PassportModel {
-    private Integer PassportNumber;
-    private Date IssueDate;
-    private String IssuePlace;
-    private Date DateOfExpiry;
-    private String ProfessionAsPassport;
+    @SerializedName("PassportNumber")
+    @Expose
+    private String passportNumber;
+    @SerializedName("IssueDate")
+    @Expose
+    private String issueDate;
+    @SerializedName("IssuePlace")
+    @Expose
+    private String issuePlace;
+    @SerializedName("DateOfExpiry")
+    @Expose
+    private String dateOfExpiry;
+    @SerializedName("ProfessionAsPassport")
+    @Expose
+    private String professionAsPassport;
 
-    public Integer getPassportNumber() {
-        return PassportNumber;
+    public String getPassportNumber() {
+        return passportNumber;
     }
 
-    public void setPassportNumber(Integer passportNumber) {
-        PassportNumber = passportNumber;
+    public void setPassportNumber(String passportNumber) {
+        this.passportNumber = passportNumber;
     }
 
-    public Date getIssueDate() {
-        return IssueDate;
+    public String getIssueDate() {
+        return issueDate;
     }
 
-    public void setIssueDate(Date issueDate) {
-        IssueDate = issueDate;
+    public void setIssueDate(String issueDate) {
+        this.issueDate = issueDate;
     }
 
     public String getIssuePlace() {
-        return IssuePlace;
+        return issuePlace;
     }
 
     public void setIssuePlace(String issuePlace) {
-        IssuePlace = issuePlace;
+        this.issuePlace = issuePlace;
     }
 
-    public Date getDateOfExpiry() {
-        return DateOfExpiry;
+    public String getDateOfExpiry() {
+        return dateOfExpiry;
     }
 
-    public void setDateOfExpiry(Date dateOfExpiry) {
-        DateOfExpiry = dateOfExpiry;
+    public void setDateOfExpiry(String dateOfExpiry) {
+        this.dateOfExpiry = dateOfExpiry;
     }
 
     public String getProfessionAsPassport() {
-        return ProfessionAsPassport;
+        return professionAsPassport;
     }
 
     public void setProfessionAsPassport(String professionAsPassport) {
-        ProfessionAsPassport = professionAsPassport;
+        this.professionAsPassport = professionAsPassport;
     }
-
 
 }

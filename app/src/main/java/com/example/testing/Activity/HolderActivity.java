@@ -3,20 +3,15 @@ package com.example.testing.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
-import android.media.Image;
-import android.net.Uri;
+
 import android.os.Bundle;
 
-import android.provider.MediaStore;
-import android.util.Base64;
+
 import android.util.Log;
 
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TableLayout;
+
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.testing.Apis.RetrofitClient;
@@ -25,10 +20,8 @@ import com.example.testing.ModelClasses.PassportModel;
 import com.example.testing.ModelClasses.SubmitModel;
 import com.example.testing.R;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.URI;
-import java.util.Date;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,13 +30,10 @@ import retrofit2.Response;
 public class HolderActivity extends AppCompatActivity {
 
     TextView name,fathername,mothername,height,weight,presentadd,permanentadd,country,job,date;
-    ImageView imageView;
+
     Model model;
     Button button;
-    Uri imagePass,imageFull;
-    Bitmap bitmap,bitmap2;
-    Date DateOfBirth=null;
-    String encodedStringFullSize,encodedStringPassport;
+
 
 
 
@@ -71,7 +61,7 @@ public class HolderActivity extends AppCompatActivity {
         }
 
         for(int j = 0;j<model.getJobsList().size();j++){
-            job.setText(" : "+model.getJobsList().get(j));
+            job.setText(" : "+model.getJobsList());
         }
 
         name.setText(" : "+model.getFirstName()+" "+model.getLastName());
@@ -130,15 +120,15 @@ public class HolderActivity extends AppCompatActivity {
     }
 
 
-    public void registration(){
+    public void registration() {
         SubmitModel sm = new SubmitModel();
-        PassportModel pm= new PassportModel();
+        PassportModel pm = new PassportModel();
 
-        pm.setDateOfExpiry(null);
-        pm.setIssueDate(null);
-        pm.setPassportNumber(10863558);
-        pm.setProfessionAsPassport("Doctor");
-        pm.setIssuePlace("Dhaka");
+        pm.setDateOfExpiry(model.getDateexpire());
+        pm.setIssueDate(model.getIssuedate());
+        pm.setPassportNumber(model.getPassportno());
+        pm.setProfessionAsPassport(model.getProfessionAsPassport());
+        pm.setIssuePlace(model.getIssueplace());
 
         sm.setFirstName(model.getFirstName());
         sm.setLastName(model.getLastName());
@@ -148,6 +138,7 @@ public class HolderActivity extends AppCompatActivity {
         sm.setDateOfBirth(model.getDateOfBirth());
         sm.setPresentAddress(model.getPresentAddress());
         sm.setPermanentAddress(model.getPermanentAddress());
+        sm.setPassportModel(pm);
         sm.setOrganizationId((long) 1);
 
         Double h = Double.parseDouble(model.getHeight());
@@ -156,39 +147,40 @@ public class HolderActivity extends AppCompatActivity {
         sm.setWeight(w);
 
 
-
-        for(int i= 0;i<model.getExpectedCountryList().size();i++){
+        for (int i = 0; i < model.getExpectedCountryList().size(); i++) {
             sm.setExpectedCountryList(model.getExpectedCountryList());
         }
-        for(int j = 0;j<model.getJobsList().size();j++){
+        for (int j = 0; j < model.getJobsList().size(); j++) {
             sm.setExpectedJobList(model.getApplideJobsList());
         }
 
         Log.d("FULL", sm.toString());
         //System.out.println(sm);
-        Call<SubmitModel> call = RetrofitClient.getInstance().getApi().userRegistration(sm);
+        try {
+            Call<SubmitModel> call = RetrofitClient.getInstance(getApplicationContext()).getApi().userRegistration(sm);
 
-        call.enqueue(new Callback<SubmitModel>() {
-            @Override
-            public void onResponse(Call<SubmitModel> call, Response<SubmitModel> response) {
+            call.enqueue(new Callback<SubmitModel>() {
+                @Override
+                public void onResponse(Call<SubmitModel> call, Response<SubmitModel> response) {
 
-                if(!response.isSuccessful()){
-                    Toast.makeText(HolderActivity.this,String.valueOf(response.code()),Toast.LENGTH_LONG).show();
+                    if (!response.isSuccessful()) {
+                        Toast.makeText(HolderActivity.this, String.valueOf(response.code()), Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(HolderActivity.this, "Submitted Successfully", Toast.LENGTH_LONG).show();
+                    }
+                    Log.d("FULL2", String.valueOf(response.code()));
                 }
-                else {
-                    Toast.makeText(HolderActivity.this,"Submitted Successfully",Toast.LENGTH_LONG).show();
-                }
-                Log.d("FULL2", String.valueOf(response.code()));
-            }
 
-            @Override
-            public void onFailure(Call<SubmitModel> call, Throwable t) {
-                Toast.makeText(HolderActivity.this,t.getLocalizedMessage(),Toast.LENGTH_LONG).show();
-                Log.d("EROR",t.getLocalizedMessage());
-            }
-        });
+                @Override
+                public void onFailure(Call<SubmitModel> call, Throwable t) {
+                    Toast.makeText(HolderActivity.this, t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                    Log.d("EROR", t.getLocalizedMessage());
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
-
-
 
 }

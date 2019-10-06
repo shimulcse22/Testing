@@ -1,6 +1,7 @@
 package com.example.testing.Fragments;
 
 import android.content.Context;
+import android.net.IpPrefix;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +26,7 @@ import com.example.testing.ModelClasses.Model;
 import com.example.testing.R;
 import com.example.testing.Shared;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,51 +68,55 @@ public class JobFragment extends Fragment implements View.OnClickListener {
         previous_job.setOnClickListener(this);
         s =shared.getDefaults("My_Lang",getContext());
 
-        Call<List<JobModel>> call = RetrofitClient.getInstance().getApi().gettingJob();
+        try{
+            Call<List<JobModel>> call = RetrofitClient.getInstance(getContext()).getApi().gettingJob();
 
-        call.enqueue(new Callback<List<JobModel>>() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onResponse(Call<List<JobModel>> call, Response<List<JobModel>> response) {
+            call.enqueue(new Callback<List<JobModel>>() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public void onResponse(Call<List<JobModel>> call, Response<List<JobModel>> response) {
 
-                for(JobModel jm : response.body()){
-                    CheckBox cb = new CheckBox(getActivity());
-                    if(s == "bn") {
-                        cb.setText((CharSequence) jm.getName_Bn());
-                        cb.setId(Math.toIntExact(jm.getJobID()));
+                    for(JobModel jm : response.body()){
+                        CheckBox cb = new CheckBox(getActivity());
+                        if(s == "bn") {
+                            cb.setText((CharSequence) jm.getName_Bn());
+                            cb.setId(Math.toIntExact(jm.getJobID()));
 
-                    }
-                    else{
-                        cb.setText((CharSequence) jm.getName_En());
-                        cb.setId(Math.toIntExact(jm.getJobID()));
-                    };
-
-                    relativeLayout.addView(cb);
-                    cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                            String checkedText = compoundButton.getText()+ "";
-                            Long checkedId = Long.valueOf(compoundButton.getId());
-                            if(b){
-                                checkedJobs.add(checkedText);
-                                checkCodes.add(checkedId);
-                                Toast.makeText(getActivity(), compoundButton.getText(), Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                checkedJobs.remove(checkedText);
-                                checkCodes.remove(checkedId);
-                            }
                         }
-                    });
-                }
-            }
+                        else{
+                            cb.setText((CharSequence) jm.getName_En());
+                            cb.setId(Math.toIntExact(jm.getJobID()));
+                        };
 
-            @Override
-            public void onFailure(Call<List<JobModel>> call, Throwable t) {
-                Log.d("Fail",t.getMessage());
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                        relativeLayout.addView(cb);
+                        cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                                String checkedText = compoundButton.getText()+ "";
+                                Long checkedId = Long.valueOf(compoundButton.getId());
+                                if(b){
+                                    checkedJobs.add(checkedText);
+                                    checkCodes.add(checkedId);
+                                    Toast.makeText(getActivity(), compoundButton.getText(), Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    checkedJobs.remove(checkedText);
+                                    checkCodes.remove(checkedId);
+                                }
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<JobModel>> call, Throwable t) {
+                    Log.d("Fail",t.getMessage());
+                    Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }catch (IOException e){
+            e.printStackTrace();
+        }
         return v;
     }
 

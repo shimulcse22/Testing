@@ -24,7 +24,9 @@ import com.example.testing.ModelClasses.CountryModel;
 import com.example.testing.ModelClasses.Model;
 import com.example.testing.R;
 import com.example.testing.Shared;
+import com.example.testing.Util;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,10 +39,10 @@ public class CountryFragment extends Fragment implements View.OnClickListener {
     ArrayList<String> checkedCountries = new ArrayList<String>();
 
     Shared shared;
-    String s,text;
+    String s, text;
     //LanguageActivity languageActivity = new LanguageActivity();
 
-    Button next_country,previous_country;
+    Button next_country, previous_country;
 
     LinearLayout relativeLayout;
 
@@ -48,9 +50,7 @@ public class CountryFragment extends Fragment implements View.OnClickListener {
 
     ItemPageSelectListener listener;
 
-    List<CountryModel> countryModels ;
-
-
+    List<CountryModel> countryModels;
 
 
     @Override
@@ -63,7 +63,7 @@ public class CountryFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_country,container,false);
+        View v = inflater.inflate(R.layout.fragment_country, container, false);
 
         next_country = v.findViewById(R.id.country_next);
         previous_country = v.findViewById(R.id.country_previous);
@@ -72,70 +72,75 @@ public class CountryFragment extends Fragment implements View.OnClickListener {
 
         relativeLayout = v.findViewById(R.id.checkbox_layout);
 
-        s =shared.getDefaults("My_Lang",getContext());
+        s = shared.getDefaults("My_Lang", getContext());
 
         text = getResources().getString(R.string.error_box);
         /*getting the value*/
-        Call<List<CountryModel>>  call = RetrofitClient.getInstance().getApi().getingCountry();
+        try {
+            Call<List<CountryModel>> call = RetrofitClient
+                    .getInstance(getContext())
+                    .getApi()
+                    .getingCountry();
 
-        call.enqueue(new Callback<List<CountryModel>>() {
-            @Override
-            public void onResponse(Call<List<CountryModel>> call, Response<List<CountryModel>> response) {
+            call.enqueue(new Callback<List<CountryModel>>() {
+                @Override
+                public void onResponse(Call<List<CountryModel>> call, Response<List<CountryModel>> response) {
 
-                //List<CountryModel> cM = response.body();
-                for(CountryModel countryModel : response.body()){
-                    CheckBox cb = new CheckBox(getActivity());
-                    if(s == "bn") {
-                        cb.setText((CharSequence) countryModel.getName_Bn());
-                    }
-                    else{
-                        cb.setText((CharSequence) countryModel.getName_En());
-                    }
-                    relativeLayout.addView(cb);
-                    cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                            String checkedText = compoundButton.getText()+ "";
-                            if(b){
-                                checkedCountries.add(checkedText);
-                                Toast.makeText(getActivity(), compoundButton.getText(), Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                checkedCountries.remove(checkedText);
-                            }
+                    //List<CountryModel> cM = response.body();
+                    for (CountryModel countryModel : response.body()) {
+                        CheckBox cb = new CheckBox(getActivity());
+                        if (s == "bn") {
+                            cb.setText((CharSequence) countryModel.getName_Bn());
+                        } else {
+                            cb.setText((CharSequence) countryModel.getName_En());
                         }
-                    });
+                        relativeLayout.addView(cb);
+                        cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                                String checkedText = compoundButton.getText() + "";
+                                if (b) {
+                                    checkedCountries.add(checkedText);
+                                    Toast.makeText(getActivity(), compoundButton.getText(), Toast.LENGTH_SHORT).show();
+                                } else {
+                                    checkedCountries.remove(checkedText);
+                                }
+                            }
+                        });
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<List<CountryModel>> call, Throwable t) {
-                    Log.d("Fail",t.getMessage());
+                @Override
+                public void onFailure(Call<List<CountryModel>> call, Throwable t) {
+                    Log.d("Fail", t.getMessage());
                     Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         return v;
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.country_previous :
+        switch (view.getId()) {
+            case R.id.country_previous:
                 startActivity(new Intent(getActivity(), LanguageActivity.class));
                 break;
-            case R.id.country_next :
+            case R.id.country_next:
                 checkCountry();
                 break;
 
         }
     }
 
-    public void checkCountry(){
-        if(checkedCountries.isEmpty()){
-            Toast.makeText(getActivity(),text, Toast.LENGTH_SHORT).show();
-        }
-        else {
+    public void checkCountry() {
+        if (checkedCountries.isEmpty()) {
+            Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+        } else {
             model.setExpectedCountryList(checkedCountries);
             listener.onSelectNextItem();
         }

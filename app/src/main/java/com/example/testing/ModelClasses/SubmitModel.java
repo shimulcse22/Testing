@@ -40,18 +40,15 @@ public class SubmitModel {
     @SerializedName("Weight")
     @Expose
     private Double weight;
-//    @SerializedName("PresentWork")
-//    @Expose
-//    private String presentWork;
-//    @SerializedName("PresentWorkPlace")
-//    @Expose
-//    private String presentWorkPlace;
     @SerializedName("ExpectedCountryList")
     @Expose
     private List<String> expectedCountryList = null;
     @SerializedName("ApplideJobsList")
     @Expose
     private List<Long> expectedJobList = null;
+    @SerializedName("PassportDetails")
+    @Expose
+    private PassportModel passportModel=null;
 
 
     public String getFirstName() {
@@ -102,6 +99,14 @@ public class SubmitModel {
         this.nationalIdNumber = nationalIdNumber;
     }
 
+    public PassportModel getPassportModel() {
+        return passportModel;
+    }
+
+    public void setPassportModel(PassportModel passportModel) {
+        this.passportModel = passportModel;
+    }
+
     public String getPresentAddress() {
         return presentAddress;
     }
@@ -134,22 +139,6 @@ public class SubmitModel {
     public void setWeight(Double weight) {
         this.weight = weight;
     }
-
-//    public String getPresentWork() {
-//        return presentWork;
-//    }
-//
-//    public void setPresentWork(String presentWork) {
-//        this.presentWork = presentWork;
-//    }
-//
-//    public String getPresentWorkPlace() {
-//        return presentWorkPlace;
-//    }
-//
-//    public void setPresentWorkPlace(String presentWorkPlace) {
-//        this.presentWorkPlace = presentWorkPlace;
-//    }
 
 
     public Long getOrganizationId() {
